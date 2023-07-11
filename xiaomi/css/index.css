@@ -1,0 +1,526 @@
+/* 主页的index.thml的样式表 */
+
+/* 顶部导航条的容器 */
+.topbar-wrapper{
+	width: 100%;
+	height: 40px;
+	/* 确保居中效果 height和l-h写一即可*/
+	line-height: 40px;
+	background-color: #333;
+}
+
+/* 设置超链接的颜色 */
+a{
+	display: block;
+	 /* 去除下划线 */
+	text-decoration: none;
+	color:#b0b0b0;
+	font-size: 12px;
+	
+}
+/* 设置移入元素效果 */
+.topbar a:hover{
+	color: #fff;
+}
+/* 设置|的效果 */
+.topbar .line{
+	color: #424242;
+	font-size: 12px;
+	margin: 0 8px;
+}
+/* 设置左侧导航栏 */
+.service, .topbar li{
+	float: left;
+}
+
+/*  */
+.app{
+	/* app开启相对定位后 小三角的定位就参考于app */
+	position: relative;
+}
+
+/* 设置app下的小三角 利用伪元素 第一种方法 
+li:hover/ ！！！！重点 / .app::after{
+	/ 因为是after 所以要设置content这个值 要不然看不出来 /
+	content: '';
+	/ 这里小三角在框外 属于溢出 这里要设置绝对定位 脱离了文档流 自动变成块元素了 所以上面的display就可以不用设置了 /
+	position: absolute;
+	width: 0;
+	height: 0;
+	/ *
+		设置块元素 
+		display: block;
+	* /
+	/ 设置四个方向的边框 /
+	border: 6px solid transparent;
+	/ 去除上边框 /
+	border-top: none;
+	/ 单独设置下边框的颜色 /
+	border-block-color: #fff;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+li:hover>.app .qucode{/ ！！！！重点 在第40分钟 建议反复观看 /
+	display: block;
+}
+*/
+
+/* 设置app下的小三角 利用伪元素 第二种方法*/
+.app::after{
+	/* 因为是after 所以要设置content这个值 要不然看不出来 */
+	content: '';
+	display: none;
+	/* 这里小三角在框外 属于溢出 这里要设置绝对定位 脱离了文档流 自动变成块元素了 所以上面的display就可以不用设置了 */
+	position: absolute;
+	width: 0;
+	height: 0;
+	/* 设置块元素 
+	display: block;*/
+	/* 设置四个方向的边框 */
+	border: 6px solid transparent;
+	/* 去除上边框 */
+	border-top: none;
+	/* 单独设置下边框的颜色 */
+	border-block-color: #fff;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.app:hover .qucode,
+.app:hover::after{
+	display: block;
+	height: 148px;
+}
+
+
+/* 设置app的下拉二维码 */
+.service .qucode{
+	/* 隐藏下拉框 */
+	/* display: none */
+	/* 这个框占据了位置 所以要开启定位 */
+	position: absolute;
+	left: -39px;
+	width: 124px;
+	/* 高度为0的时候还得+overflow把溢出的内容裁剪掉 做一步是
+	为了transition可以实现用.5s延迟过渡内容的效果 重要重要重要！！！在第105个视频*/
+	height: 0px;
+	overflow: hidden;
+	transition: height .5s;
+	/*
+		小米商城app被挤到下拉框下面 上面原因？
+		因为下拉框属于整个外部元素 而上面给topbar-wrapper设置了lh行高40px
+		所以'小米商城app'也继承了40px行高 这里把下拉框设置(重置)行高为1倍即可
+	*/
+	line-height: 1;
+	/* 设置'小米商城app'文字居中 */
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+	
+}
+.app:hover a{
+	display: block;
+}
+.app .qucode img{
+	width: 90px;
+	margin: 17px;
+	margin-bottom: 10px;
+}
+
+/* 设置'小米商城app'字体样式 */
+.app .qucode{
+	font-size: 14px;
+	color: black;
+}
+
+/* 设置右侧导航栏 */
+.shop-cart, .user-info{
+	float: right;
+}
+
+.shop-cart{
+	margin-left: 25px;
+}
+/* 设置购物车样式 */
+.shop-cart a{
+	width: 120px;
+	background-color: #424242;
+	text-align: center;
+}
+
+.shop-cart:hover a{
+	background-color: #fff;
+	color: #ff6700;
+}
+
+/* 设置购物车图标的间距 */
+.shop-cart i{
+	margin-right: 2px;
+}
+
+
+/* 头部外部容器 */
+/* 设置中间的header */
+.header{
+	height: 100px;
+	/* background-color: darkcyan; */
+}
+/* 设置logo的h1的样式 */
+.header .logo{
+	float: left;
+	margin-top: 22px;
+	width: 55px;
+	height: 55px;
+	position: relative;
+	overflow: hidden;
+	/* 经常用于隐藏logo中的文字 */
+	text-indent: -9999px;
+}
+/* 统一设置logo的超链接 */
+.header .logo a{
+	/* display: block; */
+	position: absolute;
+	width: 55px;
+	height: 55px;
+	background-color: #ff6700;
+	background-image: url(../img/2.png);
+	background-position: center;
+	transition: left .3s;
+	/* 这里还没办法看到效果 因为没有指定 left值是auto transition就不知道从哪里开始过渡 */
+	left: 0;
+}
+/* 设置home的图标 */
+.header .logo .home{
+	left: -55px;
+	background-image: url(../img/2.png);
+}
+ /* 设置鼠标移入以后两个图标的位置 */
+.header .logo:hover .mi{
+	left: 55px;
+}
+.header .logo:hover .home{
+	left: 0;
+}
+
+/* 设置中间的导航条 */
+.header .nav-wrapper{
+	float: left;
+}
+/* 设置导航条 */
+.header .nav{
+	/* width: 850px; */
+	height: 100px;
+	/* background-color: #bfc; */
+	line-height: 100px;
+	padding-left: 58px;
+}
+/* 设置导航条中的li */
+.nav > li{
+	float: left;
+}
+
+.all-goods-wrapper{
+	position: relative;
+}
+
+/* 设置左侧导航条 */
+.left-menu{
+	width: 234px;
+	height: 420px;
+	background-color: rgba(0, 0, 0, .6);
+	position: absolute;
+	z-index: 999;
+	left: -113px;
+	/* 内容就不会被展开 */
+	line-height: 1;
+	padding: 20px 0;
+}
+
+ul.left-menu .a{
+	display: block;
+	height: 42px;
+	/* 垂直居中 */
+	line-height: 42px;
+	color: white;
+	margin-right: 0;
+	padding: 0 30px ;
+	font-size: 14px;
+}
+ul.left-menu .a:hover{
+	color: white;
+	background-color: #ff6700;
+}
+
+.left-menu .a i{
+	float: right;
+	/* 垂直方向出问题 就先考虑哟行高解决 */
+	line-height: 42px;
+}
+
+.nav-wrapper li a{
+	display: block;
+	color: #000;
+	font-size: 16px;
+	margin-right: 20px;
+}
+/* 设置文字移入效果 */
+.nav-wrapper li a:hover{
+	color: #ff6700;
+}
+/* 隐藏全部商品 */
+.all-goods{
+	/* 会隐藏/全部商品分类/ 但是不会占据位置 display会 */
+	visibility: hidden;
+}
+
+.nav .goods-info{
+	/* height: 228px; */
+	height: 0;
+	overflow: hidden;
+	background-color: #fff;
+	position: absolute;
+	z-index: 9999;
+	/* 开启绝对定位后看不到 因为美指定宽度 指定就好了 100%会根据离此元素最近的开了定位的包含块（祖先元素）*/
+	width: 100%;
+	top: 140px;
+	left: 0;
+	transition: height 0.3s;
+}
+
+/* :not(:first-of-type):not(:nth-child(10):not(:nth-child(9)) */
+.nav .show-goods:hover ~ .goods-info,
+.goods-info:hover{
+	height: 228px;
+	border-top: 1px solid rgb(224, 224, 224);
+	box-shadow: 0 5px 3px rgba(0, 0, 0, .2);
+}
+
+/* 设置右侧搜索框的容器 */
+.search-wrapper{
+	width: 296px;
+	height: 50px;
+	float: right;
+	background-color: #ff6700;
+	margin-top: 25px;
+}
+.search-wrapper .search-inp{
+	float: left;
+	border: none;
+	width: 244px;
+	/* 大小指定 */
+	box-sizing: border-box;
+	padding: 0 10px;
+	font-size: 16px;
+	height: 50px;
+	outline: none;
+	border: rgb(224, 224, 224) 1px solid;
+	/* 去除轮廓线 */
+	outline: none;
+}
+/* 设置input获取焦点后的样式 */
+.search-wrapper .search-inp:focus,
+.search-wrapper .search-inp:focus + button{   /* 兄弟选择器 */
+	/* outline: 1px solid #ff6700;
+	border-right: 1px solid #ff6700; */
+	border-color: #ff6700;
+}
+.search-wrapper .search-btn{
+	float: left;
+	width: 52px;
+	height: 50px;
+	padding: 0;
+	border: none;
+	background-color: #fff;
+	color: #616161;
+	font-size: 16px;
+	border: rgb(224, 224, 224) 1px solid;
+	border-left: none ;
+}
+
+.search-wrapper .search-btn:hover{
+	background-color: #ff6700;
+	color: #fff;
+	border: none;
+}
+
+/* 设置banner */
+.banner{
+	position: relative;
+	height: 460px;
+}
+.banner .img-list li{
+	position: absolute;
+}
+.banner img{
+	width: 100%;
+	/* 去除图于图之间的边距 */
+	vertical-align: top;
+}
+
+/* 设置五个导航点 */
+.pointer{
+	position: absolute;
+	bottom: 22px;
+	right: 35px;
+	
+}
+
+.pointer a{
+	float: left;
+	width: 6px;
+	height: 6px;
+	background-color: rgba(0, 0, 0, .4);
+	border: 2px rgba(255, 255, 255, .4) solid;
+	/* 圆角设置 */
+	border-radius: 50%;
+	margin-left: 6px;
+}
+
+.pointer a:hover,
+.pointer a.active{
+	background-color: rgba(255, 255, 255, .4);
+	border-color: rgba(0, 0, 0, .4);
+}
+
+/* 设置两个箭头的雪碧图 */
+.prev-next a{
+	width: 41px;
+	height: 69px;
+	background-image: url(../img/3.png);
+	position: absolute;
+	/* 垂直居中 */
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+}
+
+.prev-next .prev{
+	left: 234px;
+	/* 照片里面有四个图 要设置到自己要的图要设置偏移量 */
+	background-position: -84px 0;
+}
+.prev-next .prev:hover{
+	/* 在prev设置偏移量后 把这个偏移量加入到hover的效果  */
+	background-position: 0 0;
+}
+.prev-next .next{
+	right: 0;
+	/* 照片里面有四个图 要设置到自己要的图要设置偏移量 */
+	background-position: -125px 0;
+}
+.prev-next .next:hover{
+	background-position: -42px 0;
+}
+
+/* 设置回到顶部的元素 */
+.back-top{
+	width: 26px;
+	height: 206px;
+	background-color: orange;
+	/* 开启固定定位 */
+	position: fixed;
+	
+	bottom: 60px;
+	/* 将right值设置为视口宽度的50% */
+	right: 50%;
+	
+	margin-right: -639px;
+	
+	/* 
+		布局的等式
+			left + margin-left + width + margin-right + right = 视口的宽度
+			
+			auto + 0 + 26 + 0 + 50% = 视口宽度
+	*/
+}
+
+.ad{
+	width: 1226px;
+	/* background-color: #000; */
+	height: 170px;
+	margin: 0 auto;
+	margin-top: 14px;
+}
+
+.ad .shortcut,
+.ad .ad-img,
+.ad li{
+	float: left;
+}
+
+/* 设置左侧快捷方式 */
+.ad .shortcut{
+	width: 228px;
+	height: 168px;
+	background-color: #5f5750;
+	/* margin-right: 14px; */
+	padding-top: 2px;
+	place-content: 6px;
+}
+/* 设置快捷方式中的超链接 */
+.ad .shortcut a{
+	display: block;
+	color: #cfccca;
+	height: 84px;
+	width: 76px;
+	text-align: center;
+	font-size: 12px;
+	/* ！！！重要第29分钟 中间广告栏 */
+	overflow: hidden;
+}
+.ad .shortcut li{
+	position: relative;
+}
+/* 设置上边框 before选中里面所有li 横向设置高度 宽度是1px */
+.ad .shortcut li::before{
+	content: '';
+	position: absolute;
+	width: 64px;
+	height: 1px;
+	background-color: #665b57;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin: 0 auto;
+}
+/* 设置左边框 纵向的设置宽度 高度是1px */
+.ad .shortcut li::after{
+	content: '';
+	position: absolute;
+	height: 70px;
+	width: 1px;
+	background-color: #665b57;
+	top: 7px;
+	left: 0;
+	bottom: 0;
+	left: 0;
+	margin: 0 auto;
+}
+.ad .shortcut a:hover{
+	color: #fff;
+}
+/* 设置图标字体 */
+.ad .shortcut i{
+	/* 让图标自占一行 */
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	font-size: 20px;
+}
+
+.ad .ad-img li{
+	width: 316px;
+	margin-left: 14.5px;
+}
+/* 最后一个子元素 last-child */
+.ad .ad-img li:last-child{
+	margin-left: 14.5px;
+}
+
+.ad .ad-img img{
+	width: 100%;
+	overflow-anchor: top ;
+}
